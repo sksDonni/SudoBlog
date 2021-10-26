@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {getPosts} from '../../redux/actionCreators/posts'
-import Post from './Post'
+import PostDisplay from './PostDisplay'
 
 function PostLayout() {
 	const posts = useSelector(state => state.posts);
@@ -10,7 +10,7 @@ function PostLayout() {
 	if(posts.postsLoading === false)
 	{
 		console.log(posts.posts);
-		const Postlist = posts.posts.map((post) => <Post post={post} />	)
+		const Postlist = posts.posts.map((post) => <PostDisplay post={post} key={post._id}/>	)
 		return (
 			<div className="w-1/2 m-auto">
 				{Postlist}

@@ -29,7 +29,7 @@ const postReducer = (state=postInitialState, action) => {
 			return {...state, postsLoading: true}
 
 		case ActionTypes.POST_LOADING:
-			return {...state, postLoading: true}
+			return {...state, postLoading: true, selectedPost:null}
 
 		default:
 			return state

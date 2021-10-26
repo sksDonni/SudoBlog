@@ -14,12 +14,22 @@ const postSchema = new Schema({
 		required: true,
 	},
 
-	createdBy:{
-		type: Schema.Types.ObjectId,
+	author:{
+		type: String,
 		ref : 'User'
+	},
+
+	caption:{
+		type: String,
+		required: true
+	},
+
+	category:{
+		type: String,
+		default: 'today'
 	}
 }, {
-	timeStamps: true
+	timestamps: true
 });
 
 module.exports = mongoose.model('Post', postSchema);

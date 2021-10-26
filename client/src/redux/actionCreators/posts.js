@@ -6,11 +6,11 @@ import  * as ActionTypes from '../actiontypes'
 export const getPost = (postId) => async (dispatch) => {
 	try{
 		dispatch({type: ActionTypes.POST_LOADING})
-		const post = await API.getPost(postId)
-		console.log(post);
+		const {data} = await API.getPost(postId)
+		console.log(data);
 		dispatch({
 			type: ActionTypes.FETCH_POST,
-			payload: post
+			payload: data
 		});
 	}
 	catch(err){
@@ -35,13 +35,13 @@ export const getPosts = () => async (dispatch) => {
 	}
 }
 
-export const ADD_POST = (post) => async (dispatch) => {
+export const addPost = (post) => async (dispatch) => {
 	try{
-		const newpost = await API.addPost(post);
-		console.log(newpost);
+		const {data} = await API.addPost(post);
+		console.log(data);
 		dispatch({
 			type: ActionTypes.ADD_POST,
-			payload: newpost
+			payload: data
 		})
 	}
 	catch(err)
