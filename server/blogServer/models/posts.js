@@ -24,16 +24,16 @@ const postSchema = new Schema(
     },
     subgroupId: {
       type: Schema.Types.ObjectId,
-      ref: 'subgroup'
+      ref: "subgroup",
     },
     tags: {
       type: Schema.Types.ObjectId,
-      ref: 'tag'
+      ref: "tag",
     },
     comments: {
       type: Schema.Types.ObjectId,
-      ref: 'comment'
-    }
+      ref: "comment",
+    },
   },
   {
     timestamps: true,

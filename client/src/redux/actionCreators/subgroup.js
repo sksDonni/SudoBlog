@@ -16,15 +16,14 @@ export const addSubgroup = (name) => async (dispatch) => {
 };
 
 export const getSubgroups = () => async (dispatch) => {
-  try{
-    const {data} = await API.getSubgroups();
+  try {
+    const { data } = await API.getSubgroups();
     console.log(data);
     dispatch({
       type: ActionTypes.GET_SUBGROUPS,
-      payload: data
-    })
-  }
-  catch(err){
+      payload: data,
+    });
+  } catch (err) {
     console.log(err);
   }
-}
+};

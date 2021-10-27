@@ -3,7 +3,7 @@ import axios from "axios";
 const baseUrl = "http://localhost:5000/";
 const postsUrl = "http://localhost:5000/posts";
 const authUrl = "http://localhost:5000/auth";
-const subgroupUrl = "http://localhost:5000/subgroup"
+const subgroupUrl = "http://localhost:5000/subgroup";
 
 const API = axios.create({ baseUrl });
 
@@ -12,6 +12,8 @@ export const getPost = (postId) => API.get(`${postsUrl}/${postId}`);
 export const addPost = (post) => API.post(postsUrl, post);
 export const deletePost = (postId) => API.delete(`${postsUrl}/${postId}`);
 export const updatePost = (postId, post) => API.put(`${postsUrl}/${postId}`);
+
+export const getPostsByGroupName = (name) => API.get(`${postsUrl}/subgroup/${name}`);
 
 export const likePost = (postId, userId) =>
   API.post(`${postsUrl}/${postId}/like`, userId);
@@ -29,5 +31,5 @@ export const likeComment = (postId, commentId, userId) =>
 export const dislikeComment = (postId, commentId, userId) =>
   API.post(`${postsUrl}/${postId}/${commentId}/dislike`, userId);
 
-export const addSubgroup = (name) => API.post(subgroupUrl, name)
+export const addSubgroup = (name) => API.post(subgroupUrl, name);
 export const getSubgroups = () => API.get(subgroupUrl);

@@ -8,9 +8,10 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const bodyparser = require("body-parser");
 const postRouter = require("./routes/posts");
-const subgroupRouter = require("./routes/subgroup")
+const subgroupRouter = require("./routes/subgroup");
 const app = express();
 const cors = require("cors");
+//require('./auth/auth')
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

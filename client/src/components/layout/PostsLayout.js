@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts } from "../../redux/actionCreators/posts";
 import PostDisplay from "./PostDisplay";
+import {Route, Switch} from 'react-router-dom'
 
 function PostLayout() {
   const posts = useSelector((state) => state.posts);

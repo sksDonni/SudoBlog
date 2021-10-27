@@ -6,13 +6,13 @@ const postInitialState = {
   selectedPost: null,
   postsLoading: true,
   postLoading: true,
-  subgroups: []
+  subgroups: [],
 };
 
 const postReducer = (state = postInitialState, action) => {
   switch (action.type) {
     case ActionTypes.GET_POSTS:
-      let posts = action.payload;
+      var posts = action.payload;
       return { ...state, posts: posts, postsLoading: false };
 
     case ActionTypes.FETCH_POST:
@@ -20,9 +20,9 @@ const postReducer = (state = postInitialState, action) => {
       return { ...state, selectedPost: post, postLoading: false };
 
     case ActionTypes.ADD_POST:
-      const newpost = action.payload;
+      var newpost = action.payload;
       console.log("from reducer", newpost);
-      let updatedPosts = state.posts.concat(newpost);
+      var updatedPosts = state.posts.concat(newpost);
       return { ...state, posts: updatedPosts, postsLoading: false };
 
     case ActionTypes.POSTS_LOADING:
@@ -32,12 +32,16 @@ const postReducer = (state = postInitialState, action) => {
       return { ...state, postLoading: true, selectedPost: null };
 
     case ActionTypes.ADD_SUBGROUP:
-      const updatedSubgroups = state.subgroups.concat(action.payload)
-      return {...state, subgroups:updatedSubgroups}
+      var updatedSubgroups = state.subgroups.concat(action.payload);
+      return { ...state, subgroups: updatedSubgroups };
 
     case ActionTypes.GET_SUBGROUPS:
-      return {...state, subgroups:action.payload}
-      
+      return { ...state, subgroups: action.payload };
+
+    case ActionTypes.GET_POSTS_BY_GROUP_NAME:
+      var updatedPosts = action.payload
+      return {...state, posts:updatedPosts }
+
     default:
       return state;
   }

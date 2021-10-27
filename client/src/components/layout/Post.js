@@ -11,10 +11,10 @@ function Post() {
   } else {
     const commentLink = `/posts/${selectedPost._id}/comments`;
     const authorLink = `/posts/${selectedPost.author}`;
-    const postContentHtml =  () => {
-      const parsedHtml = marked(selectedPost.body)
-      return {__html: parsedHtml}
-    }
+    const postContentHtml = () => {
+      const parsedHtml = marked(selectedPost.body);
+      return { __html: parsedHtml };
+    };
     return (
       <div>
         <div className="w-1/2 m-auto">
@@ -31,7 +31,9 @@ function Post() {
           <p className="text-lxl my-1 text-gray-800 font-medium">
             <Link to={authorLink}>{selectedPost.author}</Link>
           </p>
-          <p className="text-2xl my-2 font-medium"><div dangerouslySetInnerHTML={postContentHtml()}></div></p>
+          <p className="text-2xl my-2 font-medium">
+            <div dangerouslySetInnerHTML={postContentHtml()}></div>
+          </p>
           <div className="w-1/4 m-auto my-5">
             <Link
               to={commentLink}

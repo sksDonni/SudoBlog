@@ -8,7 +8,8 @@ router.use(bodyparser.json());
 router.use(express.json());
 
 /* GET users listing. */
-router.route("/")
+router
+  .route("/")
   .get(async (req, res, next) => {
     Subgroup.find({})
       .then(
@@ -34,6 +35,6 @@ router.route("/")
         (err) => next(err)
       )
       .catch((err) => next(err));
-  })
+  });
 
 module.exports = router;

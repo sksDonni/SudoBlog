@@ -42,3 +42,16 @@ export const addPost = (post) => async (dispatch) => {
     console.log(err);
   }
 };
+
+export const getPostsByGroupName = (name) =>async (dispatch) => {
+  try{
+    const {data} = await API.getPostsByGroupName(name);
+    console.log(data);
+    dispatch({
+      type: ActionTypes.GET_POSTS_BY_GROUP_NAME,
+      payload: data
+    })
+  }catch(err){
+    console.log(err);
+  }
+}
