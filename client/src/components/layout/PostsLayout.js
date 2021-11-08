@@ -6,14 +6,13 @@ import {Route, Switch} from 'react-router-dom'
 
 function PostLayout() {
   const posts = useSelector((state) => state.posts);
-  console.log(posts);
   const dispatch = useDispatch();
   if (posts.postsLoading === false) {
     console.log(posts.posts);
     const Postlist = posts.posts.map((post) => (
       <PostDisplay post={post} key={post._id} />
     ));
-    return <div className="w-1/2 m-auto">{Postlist}</div>;
+    return <div className="w-1/2 m-auto flex">{Postlist}</div>;
   } else {
     return <div className="text-center text-3xl text-red-600a">Loading..</div>;
   }

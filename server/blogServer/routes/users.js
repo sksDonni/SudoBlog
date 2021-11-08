@@ -38,8 +38,8 @@ router.post('/register', async (req, res, next) => {
 );
 
 router.post('/login', async (req, res, next) => {
+  console.log("body", req.body);
   try{
-
     const {email, password} = req.body;
     console.log(email, password);
     if(!(email && password)){
@@ -53,16 +53,17 @@ router.post('/login', async (req, res, next) => {
       console.log(valid);
       if(valid)
       {
+        console.log(user);
         const token = JWT.sign(
-        {user_id: user._id, email},
+        {user_id: user._id, email },
         'secret',
         {
           expiresIn: "2h"
         })
         console.log(token);
-        user.token = token;
-        console.log(user);
-        res.status(200).json(user)
+        const updatedUser = {token}
+        console.log(updatedUser);
+        res.status(200).json(updatedUser)
       }else{
         res.status(400).json({message: "invalid credentials"})
       }

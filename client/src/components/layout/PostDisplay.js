@@ -16,7 +16,7 @@ function Post({ post }) {
       >
         <Link to={linkToPost}>{post.title}</Link>
       </h1>
-      <p className="text-md text-gray-700">{post.author}</p>
+      <p className="text-md text-gray-700">{post.caption}</p>
     </div>
   );
 }

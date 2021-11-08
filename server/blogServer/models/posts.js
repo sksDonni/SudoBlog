@@ -13,11 +13,11 @@ const postSchema = new Schema(
       type: String,
       required: true,
     },
-    // author: {
-    //   type: Schema.Types.ObjectId,
-    //   ref: "user",
-    //   required: false
-    // },
+    author: {
+      type: Schema.Types.ObjectId,
+      ref: "user",
+      required: false
+    },
     caption: {
       type: String,
       required: true,
@@ -30,10 +30,10 @@ const postSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "tag",
     },
-    comments: {
-      type: Schema.Types.ObjectId,
-      ref: "comment",
-    },
+    comments: [{
+          type: Schema.Types.ObjectId,
+          ref: "comment",
+        }],
   },
   {
     timestamps: true,

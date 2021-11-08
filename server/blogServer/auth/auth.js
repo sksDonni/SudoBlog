@@ -1,15 +1,17 @@
 const jwt = require('jsonwebtoken')
 
-const verifyToken = (req, res, next) => {
-	const token = req.body.token || req.query.token || req.headers["auth-access-token"];
+const verifyToken = async (req, res, next) => {
+	console.log(req.body);
+	console.log(req.headers);
+	const token = req.body.token || req.query.token || req.headers["authorization"];
 	console.log(token);
 	if(!token)
 		return res.status(403).json({message: "token is required"})
 
 	try{
-		const decoded = jwt.verify(token, 'secret')
+		const decoded = await jwt.verify(token, 'secret')
 		console.log(decoded);
-		req.user = token
+		req.user = decoded
 	}
 	catch(err){	
 		console.log(err);

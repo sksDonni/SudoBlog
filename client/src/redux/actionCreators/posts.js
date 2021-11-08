@@ -43,7 +43,7 @@ export const addPost = (post) => async (dispatch) => {
   }
 };
 
-export const getPostsByGroupName = (name) =>async (dispatch) => {
+export const getPostsByGroupName = (name) => async (dispatch) => {
   try{
     const {data} = await API.getPostsByGroupName(name);
     console.log(data);
@@ -54,4 +54,34 @@ export const getPostsByGroupName = (name) =>async (dispatch) => {
   }catch(err){
     console.log(err);
   }
+}
+
+export const deletePost = (postId) => async (dispatch) => {
+  try{
+    const {data} = await API.deletePost(postId);
+    console.log(data);
+    dispatch({
+      type: ActionTypes.DELETE_POST,
+      payload: data
+    })
+  }
+    catch(err)
+    {
+      console.log(err);
+    }
+}
+
+export const updatePost = (postId, post) => async (dispatch) => {
+  try{
+    const {data} = await API.updatePost(postId, post)
+    console.log(data);
+    dispatch({
+      type: ActionTypes.UPDATE_POST,
+      payload: data
+    })
+  }
+    catch(err)
+    {
+      console.log(err);
+    }
 }

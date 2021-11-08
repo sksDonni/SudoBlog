@@ -8,17 +8,21 @@ const commentSchema = new Schema(
       type: String,
       required: true,
     },
-    post:{
+    postId:{
       type: Schema.Types.ObjectId,
       ref: 'post'
-    }
-    user: {
+    },
+    userId: {
       type: Schema.Types.ObjectId,
       ref: "user",
     },
-    userName: {
-      type: Schema.Types.ObjectId,
-      ref: 'user'
+    firstName: {
+      type: String,
+      required: true
+    },
+    lastName:{
+      type: String,
+      required: true
     },
     likes: {
       type: Number,
@@ -34,4 +38,4 @@ const commentSchema = new Schema(
   }
 );
 
-exports.module = mongoose.model("comment", commentSchema);
+module.exports = mongoose.model("comment", commentSchema);

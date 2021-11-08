@@ -10,21 +10,21 @@ router.use(express.json());
 /* GET users listing. */
 router
   .route("/")
-  .get(async (req, res, next) => {
+  .get(auth, async (req, res, next) => {
     Comments.find({})
       .then(
-        (comment) => {
+        (comments) => {
           res.statusCode = 200;
           res.setHeader("content-Type", "application/json");
-          res.json(Commentss);
+          res.json(comments);
         },
         (err) => next(err)
       )
       .catch((err) => next(err));
   })
 
-  .post(async (req, res, next) => {
-    console.log(req.body);
+  .post(auth, async (req, res, next) => {
+    console.log("user", req.user, "body", req.body);
     Comments.create(req.body)
       .then(
         (comment) => {

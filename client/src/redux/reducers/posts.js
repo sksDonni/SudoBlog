@@ -42,6 +42,11 @@ const postReducer = (state = postInitialState, action) => {
       var updatedPosts = action.payload
       return {...state, posts:updatedPosts }
 
+    case ActionTypes.DELETE_POST:
+      var postbody = action.payload
+      var updatedPosts = state.posts.filter((p) => p._id !== postbody._id)
+      return {...state, posts: updatedPosts}
+
     default:
       return state;
   }

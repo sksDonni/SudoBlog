@@ -1,7 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import {useSelector, useDispatch} from "react-redux"
 
 function Register() {
+  const dispatch = useDispatch()
+  const token = useSelector(state => state.users.authData)
+  const router = useHistory()
+
+  if(token)
+  {
+    router.push("/posts")
+  }
   return (
     <div>
       <form action="">

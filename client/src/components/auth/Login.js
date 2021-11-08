@@ -1,10 +1,31 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React,{useState} from "react";
+import { Link, useHistory } from "react-router-dom";
+import {loginUser} from "../../redux/actionCreators/users"
+import {useDispatch, useSelector} from "react-redux"
 
 function Login() {
+
+  const [email, setEmail] = useState('')
+  const [password, setpassword] = useState('')
+  const router = useHistory()
+  const token = useSelector(state => state.users.authData)
+  if(token)
+  {
+    router.push("/posts")
+  }
+  const dispatch = useDispatch()
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    const values = {
+      email,
+      password
+    }
+    console.log(values);
+    dispatch(loginUser(values, router));
+  }
   return (
     <div>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="container w-1/2 m-auto">
           <h3 className="text-center text-3xl font-medium">Login</h3>
           <div className="flex mt-4">
@@ -21,6 +42,7 @@ function Login() {
                   type="text"
                   id="emailId"
                   placeholder="Enter your email here"
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="mt-2">
@@ -32,6 +54,7 @@ function Login() {
                   type="password"
                   id="password"
                   placeholder="Enter your password here"
+                  onChange = {(e) => setpassword(e.target.value)}
                 />
               </div>
               <div className="mt-4">
