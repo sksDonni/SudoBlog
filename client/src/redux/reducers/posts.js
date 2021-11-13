@@ -39,13 +39,13 @@ const postReducer = (state = postInitialState, action) => {
       return { ...state, subgroups: action.payload };
 
     case ActionTypes.GET_POSTS_BY_GROUP_NAME:
-      var updatedPosts = action.payload
-      return {...state, posts:updatedPosts }
+      var updatedPosts = action.payload;
+      return { ...state, posts: updatedPosts };
 
     case ActionTypes.DELETE_POST:
-      var postbody = action.payload
-      var updatedPosts = state.posts.filter((p) => p._id !== postbody._id)
-      return {...state, posts: updatedPosts}
+      var postbody = action.payload;
+      var updatedPosts = state.posts.filter((p) => p._id !== postbody._id);
+      return { ...state, posts: updatedPosts };
 
     default:
       return state;

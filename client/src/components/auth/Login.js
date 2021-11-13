@@ -1,66 +1,84 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-import {loginUser} from "../../redux/actionCreators/users"
-import {useDispatch, useSelector} from "react-redux"
+import { loginUser } from "../../redux/actionCreators/users";
+import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 function Login() {
+  const router = useHistory();
+  const token = useSelector((state) => state.users.authData);
 
-  const [email, setEmail] = useState('')
-  const [password, setpassword] = useState('')
-  const router = useHistory()
-  const token = useSelector(state => state.users.authData)
-  if(token)
-  {
-    router.push("/posts")
+  const schema = yup
+    .object({
+      email: yup.string().email(),
+      password: yup.string(),
+    })
+    .required();
+
+  if (token) {
+    router.push("/posts");
   }
-  const dispatch = useDispatch()
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    const values = {
-      email,
-      password
-    }
-    console.log(values);
-    dispatch(loginUser(values, router));
-  }
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  const dispatch = useDispatch();
+  const onSubmit = (data) => {
+    console.log(data);
+    dispatch(loginUser(data, router));
+  };
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <div className="container w-1/2 m-auto">
-          <h3 className="text-center text-3xl font-medium">Login</h3>
-          <div className="flex mt-4">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="container md:w-1/2 md:m-auto">
+          <h3 className="text-center text-3xl font-medium mt-4">Login</h3>
+          <div className="grid md:flex mt-4 p-3">
             <div className="w-1/2">
               <img src="" alt="" className="w-1/2" />
             </div>
-            <div className="grid w-1/2">
+            <div className="grid w-1/2 m-auto">
               <div className="mt-2">
-                <label htmlFor="emailId" className="text-md">
+                <label htmlFor="email" className="text-md">
                   Email-Id
                 </label>
                 <input
-                  className="block mt-2 p-1 w-3/4 mr-auto border-2 border-black font-medium text-lg"
+                  className="block mt-2 p-1 md:w-3/4 mr-auto border-2 border-black font-medium text-lg"
                   type="text"
-                  id="emailId"
+                  id="email"
+                  {...register("email")}
                   placeholder="Enter your email here"
-                  onChange={(e) => setEmail(e.target.value)}
                 />
+                <p className="text-xl text-red-400 text-md">
+                  {errors.email?.message}
+                </p>
               </div>
               <div className="mt-2">
                 <label htmlFor="password" className="text-md">
                   Password
                 </label>
                 <input
-                  className="block mt-2 p-1 w-3/4 mr-auto border-2 border-black font-medium text-lg"
+                  className="block mt-2 p-1 md:w-3/4 mr-auto border-2 border-black font-medium text-lg"
                   type="password"
                   id="password"
+                  {...register("password")}
                   placeholder="Enter your password here"
-                  onChange = {(e) => setpassword(e.target.value)}
                 />
+                <p className="text-xl text-red-400 text-md">
+                  {errors.password?.message}
+                </p>
               </div>
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="text-md font-medium p-1 w-1/4 border-2 border-blue-500 bg-blue-200"
+                  className="text-md font-medium p-1 w-2/4 border-2 border-blue-500 bg-blue-200"
                 >
                   Submit
                 </button>
@@ -69,7 +87,7 @@ function Login() {
           </div>
           <h5 className="text-sm font-sm mt-5 text-center">
             Don't have an account already?
-            <Link to="" className="text-red-500 ml-2">
+            <Link to="/auth/register" className="text-red-500 ml-2">
               Register here!!
             </Link>
           </h5>

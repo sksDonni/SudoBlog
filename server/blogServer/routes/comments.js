@@ -35,7 +35,7 @@ router
         (err) => next(err)
       )
       .catch((err) => next(err));
-  })
+  });
 
 router.route("/:CommentsId").get(async (req, res, next) => {
   const { CommentsId } = req.params;

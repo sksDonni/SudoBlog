@@ -1,34 +1,33 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {useSelector, useDispatch} from "react-redux"
-import {logoutUser} from "../../redux/actionCreators/users"
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../../redux/actionCreators/users";
 
 function GuestLinks() {
-  const token = useSelector(state => state.users.authData)
-  const dispatch = useDispatch()
+  const token = useSelector((state) => state.users.authData);
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logoutUser())
-  }
+    dispatch(logoutUser());
+  };
 
-  if(token)
-  {
-    return(
-      <div className="float-right text-center">
-        <div className="text-xl mx-3 my-1 p-4">
-          <Link to="/auth/login" onClick={handleLogout}>Logout</Link>
+  if (token) {
+    return (
+      <div className="flex md:float-right text-center">
+        <div className="text-xl md:mx-3 mt-1 md:p-4 p-1 text-left md:text-center">
+          <Link to="/auth/login" onClick={handleLogout}>
+            Logout
+          </Link>
         </div>
       </div>
-    )
-  }
-  else
-  {
+    );
+  } else {
     return (
-      <div className="flex flex-row float-right text-center">
-        <div className="text-xl mx-3 my-1 p-4">
+      <div className="flex md:flex-row md:float-right">
+        <div className="text-xl md:mx-3 mt-1 md:p-4 p-1 text-center mx-3">
           <Link to="/auth/register">Register</Link>
         </div>
-        <div className="text-xl mx-3 my-1 p-4">
+        <div className="text-xl md:mx-3 mt-1 md:p-4 p-1 text-center mx-3">
           <Link to="/auth/login">Login</Link>
         </div>
       </div>

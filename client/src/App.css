@@ -1,0 +1,9 @@
+@media(max-width: 762px) {
+	#hidden{
+		display: none;
+	}
+}
+
+/*#hidden{
+	display: block;
+}*/

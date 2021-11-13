@@ -1,22 +1,20 @@
-import * as ActionTypes from "../actiontypes"
+import * as ActionTypes from "../actiontypes";
 
-const initState = []
+const initState = [];
 
-const commentsReducer = (state=initState, action) => {
-	switch(action.type)
-	{
-		case ActionTypes.GET_COMMENTS:
-			console.log(action.payload);
-			return action.payload
+const commentsReducer = (state = initState, action) => {
+  switch (action.type) {
+    case ActionTypes.GET_COMMENTS:
+      console.log(action.payload);
+      return action.payload;
 
-		case ActionTypes.ADD_COMMENT:
-			var updatedState = state.concat(action.payload)
-			return state
+    case ActionTypes.ADD_COMMENT:
+      var updatedState = state.concat(action.payload);
+      return state;
 
-		default:
-			return state
-	}
-}
+    default:
+      return state;
+  }
+};
 
-
-export default commentsReducer
+export default commentsReducer;

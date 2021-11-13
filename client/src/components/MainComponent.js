@@ -12,9 +12,9 @@ import AdminHome from "./admin/AdminHome";
 import AddSubgroup from "./admin/AddSubgroup";
 import { getSubgroups } from "../redux/actionCreators/subgroup";
 import PostsSubgroupComponent from "./layout/PostsSubgroupFilter";
-import AddComment from "./comments/CommentForm"
-import AdminViewPosts from "./admin/ViewPosts"
-import EditPost from "./admin/EditPost"
+import AddComment from "./comments/CommentForm";
+import AdminViewPosts from "./admin/ViewPosts";
+import EditPost from "./admin/EditPost";
 
 function MainComponent() {
   const dispatch = useDispatch();
@@ -33,7 +33,11 @@ function MainComponent() {
         <Route exact path="/posts/:id">
           <Post />
         </Route>
-        <Route exact path="/subgroup/:subgroupName" component={PostsSubgroupComponent} />
+        <Route
+          exact
+          path="/subgroup/:subgroupName"
+          component={PostsSubgroupComponent}
+        />
         <Route exact path="/auth/login">
           <Login />
         </Route>

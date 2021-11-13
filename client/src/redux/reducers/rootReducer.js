@@ -1,8 +1,9 @@
 import { combineReducers, applyMiddleware, createStore } from "redux";
-import comments from './comments'
+import comments from "./comments";
 import posts from "./posts";
 // import likes from './reducer/likes'
-import users from "./users"
+import errors from "./errors";
+import users from "./users";
 import React from "react";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
@@ -12,7 +13,8 @@ function rootReducer() {
     combineReducers({
       posts,
       users,
-      comments
+      comments,
+      errors,
     }),
     applyMiddleware(thunk, logger)
   );

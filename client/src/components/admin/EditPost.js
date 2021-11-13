@@ -1,77 +1,77 @@
-import React, {useEffect, useState} from 'react'
-import {useSelector, useDispatch} from "react-redux"
-import {useHistory, useParams, useLocation} from "react-router-dom"
-import {getPost, updatePost} from "../../redux/actionCreators/posts"
+import React, { useEffect, useState, useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams, useLocation } from "react-router-dom";
+import { getPost, updatePost } from "../../redux/actionCreators/posts";
 import Editor from "rich-markdown-editor";
 import { getSubgroups } from "../../redux/actionCreators/subgroup";
 
 function EditPost() {
-	const {id} = useParams()
-	console.log(id);
-	const dispatch = useDispatch()
-	const location = useLocation()
+  const { id } = useParams();
+  console.log(id);
+  const dispatch = useDispatch();
+  const location = useLocation();
 
-	const post = useSelector(state => state.posts.selectedPost)
-  const subgroups = useSelector(state => state.posts.subgroups)
-	const [title, setTitle] = useState("");
-	const [content, setContent] = useState("");
-	const [caption, setCaption] = useState("");
-	const [author, setAuthor] = useState("");
-	const [imageFiles, setImageFiles] = useState([]);
+  const post = useSelector((state) => state.posts.selectedPost);
+  const subgroups = useSelector((state) => state.posts.subgroups);
+  const [title, setTitle] = useState("");
+  const content = useRef("gibberish");
+  const caption = useRef("gibberish");
+  const [author, setAuthor] = useState("");
+  const [imageFiles, setImageFiles] = useState([]);
   const [subgroup, setSubgroup] = useState("");
 
   useEffect(() => {
-    dispatch(getPost(id))
-    //dispatch(getSubgroups())
+    dispatch(getPost(id));
     console.log(post);
-    return () => {
+  }, [id]);
+
+  if (post !== null && subgroups.length !== 0) {
+    const selectSubgroup = subgroups.map((s) => (
+      <>
+        {" "}
+        <option key={s._id} value={s.name}>
+          {s.name}
+        </option>{" "}
+      </>
+    ));
+
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      const subgroupfilter = subgroups.filter((s) => s.name === subgroup)[0];
+      console.log(subgroupfilter);
+      const subgroupId = subgroupfilter._id;
+      let captionValue = caption.current();
+      let contentValue = content.current();
+      console.log(subgroupId);
+      const values = {
+        title,
+        caption: captionValue,
+        author,
+        body: contentValue,
+        subgroupId,
+      };
+      console.log(values);
+      dispatch(updatePost(id, values));
     };
-  }, [id])
 
-
-
-	if(post !== null && subgroups.length !== 0)
-	{
-
-	  const selectSubgroup = subgroups.map((s) => (
-    <>
-      {" "}
-      <option key={s._id} value={s.name}>
-        {s.name}
-      </option>{" "}
-    </>
-  ));
-
-	const handleSubmit = (e) => {
-	    e.preventDefault();
-	    const subgroupfilter = subgroups.filter((s) => s.name === subgroup)[0];
-	    console.log(subgroupfilter);
-	    const subgroupId = subgroupfilter._id;
-	    console.log(subgroupId);
-	    const values = {
-	      title,
-	      caption,
-	      author,
-	      body: content,
-	      subgroupId,
-	    };
-	    console.log(values);
-	    dispatch(updatePost(id, values));
-  	};
-
-  const populateDetails = () => {
-      setTitle(post.title)
-      setContent(post.body)
-      setCaption(post.caption)
-      setAuthor(post.author)
-      setImageFiles(post.imageFiles)
+    const populateDetails = () => {
+      setTitle(post.title);
+      content.current = post.body;
+      caption.current = post.caption;
+      setAuthor(post.author);
+      setImageFiles(post.imageFiles);
       const subgroupId = post.subgroupId;
-      setSubgroup((subgroups.filter((s) => s._id === subgroupId))[0].name)
+      setSubgroup(subgroups.filter((s) => s._id === subgroupId)[0].name);
       console.log(title, "clicked");
-  }
+    };
     return (
       <div className="w-1/2 m-auto mt-5">
-        <button onClick={() => populateDetails()} className="border-2 border-black">populateDetails </button>
+        <button
+          onClick={() => populateDetails()}
+          className="border-2 p-1 text-2xl font-bold border-black"
+        >
+          Populate Details
+        </button>
         <h3 className="font-bold text-4xl text-center">Add Posts</h3>
         <form className="" onSubmit={handleSubmit}>
           <div className="mt-5">
@@ -105,8 +105,8 @@ function EditPost() {
               Post Caption
             </label>
             <Editor
-              onChange={(value) => setCaption(value)}
-              value={caption}
+              onChange={(value) => (caption.current = value)}
+              value={caption.current}
               className="h-30 border-2 w-3/4 text-1xl block my-2 font-semibold"
             />
           </div>
@@ -116,8 +116,8 @@ function EditPost() {
               Post Content
             </label>
             <Editor
-              onChange={(value) => setContent(value)}
-              value={content}
+              onChange={(value) => (content.current = value)}
+              value={content.current}
               className="h-30 border-2 w-3/4 text-1xl block my-2 font-semibold"
             />
           </div>
@@ -127,7 +127,7 @@ function EditPost() {
             </label>
             <input
               type="file"
-              onChange={(e) => setContent(e.target.value)}
+              onChange={(e) => setImageFiles(e.target.value)}
               className="h-30 border-2 w-3/4 text-1xl block my-1 font-semibold"
             />
           </div>
@@ -149,9 +149,8 @@ function EditPost() {
         </form>
       </div>
     );
- } 
-else{
-	return(<div>loading...</div>)
+  } else {
+    return <div>loading...</div>;
+  }
 }
-}
-export default EditPost
+export default EditPost;

@@ -8,21 +8,24 @@ const subgroupUrl = "http://localhost:5000/subgroup";
 const API = axios.create({ baseUrl });
 
 API.interceptors.request.use((req) => {
-
-  if(localStorage.getItem('profile')){
-    req.headers.Authorization = `${JSON.parse(localStorage.getItem('profile')).token}`
+  if (localStorage.getItem("profile")) {
+    req.headers.Authorization = `${
+      JSON.parse(localStorage.getItem("profile")).token
+    }`;
     console.log(req.headers.Authorization);
   }
-  return req
-})
+  return req;
+});
 
 export const getPosts = () => API.get(`${postsUrl}/`);
 export const getPost = (postId) => API.get(`${postsUrl}/${postId}`);
 export const addPost = (post) => API.post(postsUrl, post);
 export const deletePost = (postId) => API.delete(`${postsUrl}/${postId}`);
-export const updatePost = (postId, post) => API.put(`${postsUrl}/${postId}`);
+export const updatePost = (postId, post) =>
+  API.put(`${postsUrl}/${postId}`, post);
 
-export const getPostsByGroupName = (name) => API.get(`${postsUrl}/subgroup/${name}`);
+export const getPostsByGroupName = (name) =>
+  API.get(`${postsUrl}/subgroup/${name}`);
 
 export const likePost = (postId, userId) =>
   API.post(`${postsUrl}/${postId}/like`, userId);
@@ -43,4 +46,5 @@ export const dislikeComment = (postId, commentId, userId) =>
 export const addSubgroup = (name) => API.post(subgroupUrl, name);
 export const getSubgroups = () => API.get(subgroupUrl);
 
-export const loginUser = (body) => API.post(`${authUrl}/login`, body)
+export const loginUser = (body) => API.post(`${authUrl}/login`, body);
+export const registerUser = (body) => API.post(`${authUrl}/register`, body);

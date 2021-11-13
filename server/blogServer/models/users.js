@@ -21,7 +21,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    posts: [{ type: Schema.Types.ObjectId, ref: "post"}],
+    posts: [{ type: Schema.Types.ObjectId, ref: "post" }],
     likedPosts: [{ type: Schema.Types.ObjectId, ref: "post" }],
     likedComments: [{ type: Schema.Types.ObjectId, ref: "comment" }],
     comments: [{ type: Schema.Types.ObjectId, ref: "comment" }],
@@ -34,6 +34,5 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
-
 
 module.exports = mongoose.model("user", userSchema);

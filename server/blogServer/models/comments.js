@@ -8,9 +8,9 @@ const commentSchema = new Schema(
       type: String,
       required: true,
     },
-    postId:{
+    postId: {
       type: Schema.Types.ObjectId,
-      ref: 'post'
+      ref: "post",
     },
     userId: {
       type: Schema.Types.ObjectId,
@@ -18,11 +18,11 @@ const commentSchema = new Schema(
     },
     firstName: {
       type: String,
-      required: true
+      required: true,
     },
-    lastName:{
+    lastName: {
       type: String,
-      required: true
+      required: true,
     },
     likes: {
       type: Number,

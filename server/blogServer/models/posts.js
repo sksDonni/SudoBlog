@@ -16,7 +16,7 @@ const postSchema = new Schema(
     author: {
       type: Schema.Types.ObjectId,
       ref: "user",
-      required: false
+      required: false,
     },
     caption: {
       type: String,
@@ -30,10 +30,12 @@ const postSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "tag",
     },
-    comments: [{
-          type: Schema.Types.ObjectId,
-          ref: "comment",
-        }],
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "comment",
+      },
+    ],
   },
   {
     timestamps: true,
