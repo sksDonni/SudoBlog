@@ -4,6 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
+const multer = require("multer");
 const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const bodyparser = require("body-parser");
@@ -11,6 +12,7 @@ const postRouter = require("./routes/posts");
 const subgroupRouter = require("./routes/subgroup");
 const app = express();
 const cors = require("cors");
+//const storage = require("./fileUpload/upload");
 //require('./auth/auth')
 
 // view engine setup

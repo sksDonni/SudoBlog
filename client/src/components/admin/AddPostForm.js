@@ -40,6 +40,7 @@ function AddPostForm() {
       caption,
       body: content,
       subgroupId,
+      imageFiles
     };
     console.log(values);
     dispatch(addPost(values));
@@ -49,7 +50,7 @@ function AddPostForm() {
     return (
       <div className="w-1/2 m-auto mt-5">
         <h3 className="font-bold text-4xl text-center">Add Posts</h3>
-        <form className="" onSubmit={handleSubmit}>
+        <form className="" onSubmit={handleSubmit}  enctype="multipart/form-data">
           <div className="mt-5">
             <label htmlFor="postTitle" className="text-2xl">
               Post Title
@@ -86,8 +87,9 @@ function AddPostForm() {
               Image files
             </label>
             <input
+              name="imageFiles"
               type="file"
-              onChange={(e) => setContent(e.target.value)}
+              onChange={(e) => setImageFiles(e.target.value)}
               className="h-30 border-2 w-3/4 text-1xl block my-1 font-semibold"
             />
           </div>

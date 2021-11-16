@@ -7,9 +7,15 @@ const auth = require("../auth/auth");
 const Comments = require("../models/comments");
 const router = express.Router();
 const mongoose = require("mongoose");
+const storage = require("../fileUpload/upload");
+const multer = require("multer")
 
 router.use(bodyparser.json());
 router.use(express.json());
+
+const upload = multer({
+       storage: storage,
+});
 
 /* GET users listing. */
 router
@@ -27,7 +33,7 @@ router
       .catch((err) => next(err));
   })
 
-  .post(auth, async (req, res, next) => {
+  .post(auth, upload.single("imageFiles"), async (req, res, next) => {
     console.log(req.body);
     req.body.author = req.user.user_id;
     Post.create(req.body)
