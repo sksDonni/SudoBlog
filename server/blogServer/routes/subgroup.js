@@ -37,4 +37,18 @@ router
       .catch((err) => next(err));
   });
 
+  router.route("/:id")
+  .delete(async (req, res, next) => {
+    const {id} = req.params;
+    Subgroup.findByIdAndDelete(id)
+      .then((subgroup) => {
+        res.statusCode = 200;
+        res.setHeader("content-Type", "application/json");
+        res.json(subgroup)
+      },
+      (err) => next(err)
+      )
+      .catch((err) => next(err))
+    });
+  
 module.exports = router;

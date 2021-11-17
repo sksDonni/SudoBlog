@@ -5,6 +5,7 @@ const Post = require("../models/posts");
 const JWT = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 /* GET users listing. */
+const config = require("../config")
 const bodyParser = require("body-parser");
 
 router.use(bodyParser.json());
@@ -57,7 +58,7 @@ router.post("/login", async (req, res, next) => {
       console.log(valid);
       if (valid) {
         console.log(user);
-        const token = JWT.sign({ user_id: user._id, email }, "secret", {
+        const token = JWT.sign({ user_id: user._id, email }, config.secret, {
           expiresIn: "2h",
         });
         console.log(token);

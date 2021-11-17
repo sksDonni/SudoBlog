@@ -14,7 +14,7 @@ const app = express();
 const cors = require("cors");
 //const storage = require("./fileUpload/upload");
 //require('./auth/auth')
-
+const config = require('./config.js')
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 
@@ -37,7 +37,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-const CONNECTION_URL = "mongodb://localhost:27017/blog";
+const CONNECTION_URL = config.MONGO_URL
 const PORT = process.env.PORT || 5000;
 
 mongoose

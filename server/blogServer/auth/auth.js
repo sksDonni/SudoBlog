@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const config = require("../config")
 
 const verifyToken = async (req, res, next) => {
   console.log(req.body);
@@ -9,7 +10,7 @@ const verifyToken = async (req, res, next) => {
   if (!token) return res.status(403).json({ message: "token is required" });
 
   try {
-    const decoded = await jwt.verify(token, "secret");
+    const decoded = await jwt.verify(token, config.secret);
     console.log(decoded);
     req.user = decoded;
   } catch (err) {
