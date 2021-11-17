@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UserLinks from "./UserLinks";
 import GuestLinks from "./GuestLinks";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { GiHamburgerMenu } from "react-icons/gi";
 
 function NavbarComponent() {
   const [nav, setNav] = useState(false);
-  const openOrClose = nav ? "hidden" : "";
+  const openOrClose = nav ? "" : "hidden";
+  const location = useLocation()
+
+  useEffect(() => {
+    return () => {
+      setNav(false);
+    };
+  }, [location])
+  
   return (
     <div className="mb-4">
       <div className="flex text-center">
@@ -18,12 +26,12 @@ function NavbarComponent() {
         </div>
         <div className="md:hidden block text-3xl text-red-600">
           <button className="" onClick={() => setNav(!nav)}>
-            <GiHamburgerMenu />{" "}
+            <GiHamburgerMenu />
           </button>
         </div>
       </div>
       <div
-        className="flex justify-center bg-red-600 text-white"
+        className="flex justify-left md:justify-center border-red-100 m-1 border-2 p-2"
         id={openOrClose}
       >
         <UserLinks />

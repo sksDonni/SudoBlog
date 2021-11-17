@@ -40,7 +40,7 @@ function AddPostForm() {
       caption,
       body: content,
       subgroupId,
-      imageFiles
+      imageFiles,
     };
     console.log(values);
     dispatch(addPost(values));
@@ -50,7 +50,11 @@ function AddPostForm() {
     return (
       <div className="w-1/2 m-auto mt-5">
         <h3 className="font-bold text-4xl text-center">Add Posts</h3>
-        <form className="" onSubmit={handleSubmit}  enctype="multipart/form-data">
+        <form
+          className=""
+          onSubmit={handleSubmit}
+          enctype="multipart/form-data"
+        >
           <div className="mt-5">
             <label htmlFor="postTitle" className="text-2xl">
               Post Title

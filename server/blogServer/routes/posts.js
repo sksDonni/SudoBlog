@@ -8,13 +8,13 @@ const Comments = require("../models/comments");
 const router = express.Router();
 const mongoose = require("mongoose");
 const storage = require("../fileUpload/upload");
-const multer = require("multer")
+const multer = require("multer");
 
 router.use(bodyparser.json());
 router.use(express.json());
 
 const upload = multer({
-       storage: storage,
+  storage: storage,
 });
 
 /* GET users listing. */

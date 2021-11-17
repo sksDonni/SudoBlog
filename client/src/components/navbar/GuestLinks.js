@@ -13,8 +13,8 @@ function GuestLinks() {
 
   if (token) {
     return (
-      <div className="flex md:float-right text-center">
-        <div className="text-xl md:mx-3 mt-1 md:p-4 p-1 text-left md:text-center">
+      <div className="md:float-right text-center">
+        <div className="text-xl mt-1 md:p-4 p-1 text-left md:text-center mx-3">
           <Link to="/auth/login" onClick={handleLogout}>
             Logout
           </Link>
@@ -24,10 +24,10 @@ function GuestLinks() {
   } else {
     return (
       <div className="flex md:flex-row md:float-right">
-        <div className="text-xl md:mx-3 mt-1 md:p-4 p-1 text-center mx-3">
+        <div className="text-xl mt-1 md:p-4 p-1 text-center mx-3">
           <Link to="/auth/register">Register</Link>
         </div>
-        <div className="text-xl md:mx-3 mt-1 md:p-4 p-1 text-center mx-3">
+        <div className="text-xl mt-1 md:p-4 p-1 text-center mx-3">
           <Link to="/auth/login">Login</Link>
         </div>
       </div>
