@@ -16,7 +16,7 @@ function rootReducer() {
       comments,
       errors,
     }),
-    applyMiddleware(thunk, logger)
+    applyMiddleware(thunk)
   );
 
   return store;

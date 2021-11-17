@@ -7,6 +7,13 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --write \"*/**/*.{js,jsx}\""
   },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
+  "engines": {
+    "node": "14.x"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
