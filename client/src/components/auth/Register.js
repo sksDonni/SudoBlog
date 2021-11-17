@@ -39,13 +39,13 @@ function Register() {
   return (
     <div>
       <form action="" onSubmit={handleSubmit(onSubmit)}>
-        <div className="container w-1/2 m-auto">
+        <div className="container m-auto">
           <h3 className="text-center text-3xl font-medium mt-4">Register</h3>
           <div className="flex mt-4">
-            <div className="w-1/2">
+            <div className="md:w-1/2">
               <img src="" alt="" className="w-1/2" />
             </div>
-            <div className="grid md:w-1/2">
+            <div className="grid md:w-1/2 m-auto">
               <div className="mt-2">
                 <label htmlFor="firstName" className="text-md">
                   First Name
@@ -101,7 +101,7 @@ function Register() {
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="text-md font-medium p-1 w-2/4 border-2 border-blue-500 bg-blue-200"
+                  className="text-md font-medium p-1 w-1/4 border-2 border-blue-500 bg-blue-200"
                 >
                   Submit
                 </button>

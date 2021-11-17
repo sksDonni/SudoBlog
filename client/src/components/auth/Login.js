@@ -38,14 +38,14 @@ function Login() {
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="container md:w-1/2 md:m-auto">
+        <div className="container md:w-3/4 m-auto">
           <h3 className="text-center text-3xl font-medium mt-4">Login</h3>
-          <div className="grid md:flex mt-4 p-3">
-            <div className="w-1/2">
-              <img src="" alt="" className="w-1/2" />
+          <div className="grid md:flex md:justify-left mt-4 p-2">
+            <div className="md:w-1/2 md:m-auto">
+              <img className="md:w-4/6 m-auto h-3/4" src="https://png.pngtree.com/png-vector/20191110/ourmid/pngtree-avatar-icon-profile-icon-member-login-vector-isolated-png-image_1978396.jpg" alt="login logo" />
             </div>
-            <div className="grid w-1/2 m-auto">
-              <div className="mt-2">
+            <div className="grid md:w-1/2 m-auto">
+              <div className="md:mt-2 mt-1">
                 <label htmlFor="email" className="text-md">
                   Email-Id
                 </label>
@@ -78,7 +78,7 @@ function Login() {
               <div className="mt-4">
                 <button
                   type="submit"
-                  className="text-md font-medium p-1 w-2/4 border-2 border-blue-500 bg-blue-200"
+                  className="text-md font-medium p-1 w-1/4 border-2 border-blue-500 bg-blue-200"
                 >
                   Submit
                 </button>
